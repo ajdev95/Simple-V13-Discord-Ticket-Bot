@@ -21,9 +21,19 @@ const client = new Client({
     Intents.FLAGS.DIRECT_MESSAGE_TYPING] 
 });
 
-const ticketCategoryID = '1097497598228697128';
-const adminRoleID = '1097497641702666280';
-const idserver = '1096779820202991679';
+
+// Do these:
+
+const ticketCategoryID = 'categoryid'; // Add the ticket category ID
+const adminRoleID = 'supportroleid'; // Add your Support's role ID
+const idserver = 'idserver'; // Add your GUILD's ID
+const titleMsg = ''; // Add the title of the opened ticket message
+const descMsg = ''; // Add the description of the opened ticket message
+const panelMsg = ''; // Add the panel msg of the ticket panel message
+
+
+
+
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -42,7 +52,7 @@ client.on('ready', () => {
         .setCustomId('create_ticket')
         .setEmoji("🎟️")
       )
-      message.channel.send({ content: `**لشراء كريدت أرجوا فتح تكت, الاسعار موجودة في الرومات**` , components: [button] });
+      message.channel.send({ content: `${panelMsg || 'No panel msg has been set'}` , components: [button] });
     }
   
   });
@@ -84,8 +94,8 @@ client.on('interactionCreate', async interaction => {
     });
     
     const ticketEmbed = {
-      title: 'تكت الشراء',
-      description: '**أرجوا انتظار اداري لمسك التكت.**',
+      title: `${titleMsg || 'No title has been setted'}`,
+      description: `${descMsg || '**Please wait for a Support member to come.**'}`,
       color: '#4e5d94'
     };
     const ticketMessage = await ticketChannel.send({ embeds: [ticketEmbed] });
@@ -107,7 +117,7 @@ client.on('interactionCreate', async interaction => {
     await ticketMessage.edit({ components: [buttonRow] });
 
     await interaction.reply({
-      content: `**تم انشاء التكت ${ticketChannel}.**`,
+      content: `**Successfully opened a ticket ${ticketChannel}.**`,
       ephemeral: true
     });
     ticketCount++;
@@ -120,7 +130,7 @@ client.on('interactionCreate', async interaction => {
     const ticketChannel = interaction.channel;
     const adminRole = interaction.guild.roles.cache.get(adminRoleID);
     if (!interaction.member.roles.cache.some(e=> e.id === adminRole.id)){
-      await interaction.reply({ content: "**فقط الادارة الي معاها رتبة سبورت تقدر تمسك التكت.**", ephemeral: true });
+      await interaction.reply({ content: `**Only ${adminRoleID} can claim the ticket**`, ephemeral: true });
       return;
     }
     
@@ -143,21 +153,21 @@ client.on('interactionCreate', async interaction => {
     await interaction.update({ components: [claimedButton] });
 
     await interaction.followUp({
-      content: `لقد استلمت تكت ${interaction.channel}`,
+      content: `:white_check_mark: **Successfully claimed ${interaction.channel}**`,
       ephemeral: true
     });
   } else if (interaction.customId === 'delete_ticket') {
     const adminRole = interaction.guild.roles.cache.get(adminRoleID);
     if (!interaction.member.roles.cache.some(e=> e.id === adminRole.id)){
-      await interaction.reply({ content: "**فقط الادارة الي معاها رتبة سبورت تقدر تحذف التكت.**", ephemeral: true });
+      await interaction.reply({ content: `**Only ${adminRoleID} can close the ticket.**`, ephemeral: true });
       return;
     }
     const ticketChannel = interaction.channel;
-    interaction.reply({embeds: [new MessageEmbed() .setDescription(`**سوف يتم حذف التكت بعد 5 ثواني**`) .setColor('RED') ]})
+    interaction.reply({embeds: [new MessageEmbed() .setDescription(`**The tickect is going to be deleted after 5 seconds**`) .setColor('RED') ]})
     setTimeout(async() => {
       await ticketChannel.delete();
     }, 5000);
   }
 
 });
-  client.login("token here");
+  client.login(process.env.token);
