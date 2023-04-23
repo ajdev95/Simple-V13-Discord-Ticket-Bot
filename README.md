@@ -1,1 +1,1 @@
-# simple-discord-ticket-bot
+# Simple Ticket Bot [ One Bot **Guild** Only ]
