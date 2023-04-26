@@ -1,10 +1,10 @@
 # Simple Ticket Bot [ One Bot **Guild** Only ]
 
-## 🆘 Help 🆘
+# 🆘 Help 🆘
 
 **Support:** [discord.gg/black-h](https://discord.gg/black-h)
 
-## Installation
+# Installation
 
 <details>
 <summary>Windows Installation</summary>
@@ -23,13 +23,11 @@ and done!
 </details>
 
 
-## Using [Replit](https://replit.com)?
+# Using [Replit](https://replit.com)?
 
 dont worry, go to `Secrets` tab, add a new secret called `token` with the value `yourbottoken`
 
-## Be sure to change these!
-
-Be sure to change line `27`, `28`, `29`, `30`, `31`, `32`
+# Be sure to change line `27`, `28`, `29`, `30`, `31`, `32`
 
 ```js
 27. const ticketCategoryID = 'categoryid'; // Add the ticket category ID
