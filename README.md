@@ -22,20 +22,17 @@
 and done!
 </details>
 
-
-# Using [Replit](https://replit.com)?
-
-dont worry, go to `Secrets` tab, add a new secret called `token` with the value `yourbottoken`
-
-# Be sure to change line `27`, `28`, `29`, `30`, `31`, `32`
+# Changes that YOU have to change!
 
 ```js
-27. const ticketCategoryID = 'categoryid'; // Add the ticket category ID
-28. const adminRoleID = 'supportroleid'; // Add your Support's role ID
-29. const idserver = 'idserver'; // Add your GUILD's ID
-30. const titleMsg = ''; // Add the title of the opened ticket message
-31. const descMsg = ''; // Add the description of the opened ticket message
-32. const panelMsg = ''; // Add the panel msg of the ticket panel message
+27.    const ticketCategoryID = 'categoryid'; // Add the ticket category ID
+28.    const adminRoleID = 'supportroleid'; // Add your Support's role ID
+29.    const idserver = 'idserver'; // Add your GUILD's ID
+30.    const titleMsg = ''; // Add the title of the opened ticket message
+31.    const descMsg = ''; // Add the description of the opened ticket message
+32.    const panelMsg = ''; // Add the panel msg of the ticket panel message
+175.   client.login("yourbottoken") // Add your bot token here
+
 ```
 
 if you don't change these it will not work!
