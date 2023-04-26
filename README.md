@@ -28,9 +28,9 @@ and done!
 27.    const ticketCategoryID = 'categoryid'; // Add the ticket category ID
 28.    const adminRoleID = 'supportroleid'; // Add your Support's role ID
 29.    const idserver = 'idserver'; // Add your GUILD's ID
-30.    const titleMsg = ''; // Add the title of the opened ticket message
-31.    const descMsg = ''; // Add the description of the opened ticket message
-32.    const panelMsg = ''; // Add the panel msg of the ticket panel message
+30.    const titleMsg = 'titleHere'; // Add the title of the opened ticket message
+31.    const descMsg = 'descriptionHere'; // Add the description of the opened ticket message
+32.    const panelMsg = 'panelMsghere'; // Add the panel msg of the ticket panel message
 175.   client.login("yourbottoken") // Add your bot token here
 
 ```
