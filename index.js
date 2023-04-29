@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 const { Client, Intents } = require('discord.js');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, Events, MessageEmbed } = require('discord.js');
 const { MessageActionRow, MessageButton } = require('discord.js');
+const db = require('quick.db')
 const client = new Client({ 
     intents:[
     Intents.FLAGS.GUILDS,
