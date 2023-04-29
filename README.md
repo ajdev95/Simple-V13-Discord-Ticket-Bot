@@ -4,6 +4,12 @@
 
 **Support:** [discord.gg/black-h](https://discord.gg/black-h)
 
+
+# Change log 1.0.2
+
+The ability to get answered with a "Yes/No" when closing a ticket.
+Added a pin button that pins the ticket.
+
 # Installation
 
 <details>
@@ -31,7 +37,7 @@ and done!
 30.    const titleMsg = 'titleHere'; // Add the title of the opened ticket message
 31.    const descMsg = 'descriptionHere'; // Add the description of the opened ticket message
 32.    const panelMsg = 'panelMsghere'; // Add the panel msg of the ticket panel message
-175.   client.login("yourbottoken") // Add your bot token here
+258.   client.login("yourbottoken") // Add your bot token here
 
 ```
 
