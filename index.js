@@ -180,7 +180,7 @@ client.on('interactionCreate', async interaction => {
       .setCustomId('no')
       .setEmoji('🗑️')
       )
-    interaction.reply({embeds: [new MessageEmbed() .setDescription(`**The tickect is going to be deleted after 5 seconds**`) .setColor('RED') ]})
+    interaction.reply({embeds: [new MessageEmbed() .setDescription(`**The ticket is going to be deleted after 5 seconds**`) .setColor('RED') ]})
     setTimeout(async() => {
       await ticketChannel.delete();
     }, 5000);
