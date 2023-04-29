@@ -134,8 +134,12 @@ client.on('interactionCreate', async interaction => {
       return;
     }
     
-    const claimedButton = 
+    const claimedButton =
     new MessageActionRow().addComponents(
+          new MessageButton()
+      .setStyle('SECONDARY')
+      .setCustomId('pin')
+      .setEmoji('📌'),
     new MessageButton()
       .setCustomId('receive_ticket')
       .setLabel(`By ${interaction.user.tag}`)
@@ -163,6 +167,18 @@ client.on('interactionCreate', async interaction => {
       return;
     }
     const ticketChannel = interaction.channel;
+      const Row1 = new MessageActionRow().addComponents(
+      new MessageButton()
+      .setStyle('SUCCESS')
+      .setLabel('Yes')
+      .setCustomId('yes')
+      .setEmoji('✅'),
+      new MessageButton()
+      .setStyle('DANGER')
+      .setLabel('No')
+      .setCustomId('no')
+      .setEmoji('🗑️')
+      )
     interaction.reply({embeds: [new MessageEmbed() .setDescription(`**The tickect is going to be deleted after 5 seconds**`) .setColor('RED') ]})
     setTimeout(async() => {
       await ticketChannel.delete();
@@ -170,6 +186,73 @@ client.on('interactionCreate', async interaction => {
   }
 
 });
+
+
+client.on("interactionCreate", (message) => {
+  if (!message.isButton()) return;
+  if (message.customId === 'yes') {
+    const adminRole = message.guild.roles.cache.get(adminRoleID);
+    if (!message.member.roles.cache.some(e=> e.id === adminRole.id)){
+      message.reply({ content: `**Only ${adminRole} can close this ticket.**`, ephemeral: true });
+      return;
+    }
+    const ticketChannel = message.channel;
+
+    let yesEmbed = new MessageEmbed() 
+    .setDescription(`**This ticket will be deleted in 7 seconds by <@${message.author.id}>**`)
+    .setColor('RED')
+
+    message.reply({embeds: [yesEmbed]})
+  setTimeout(async() => {
+    await ticketChannel.delete();
+  }, 5000);
+  } else if(message.customId === 'no'){
+    const adminRole = message.guild.roles.cache.get(adminRoleID);
+    if (!message.member.roles.cache.some(e=> e.id === adminRole.id)){
+      message.reply({ content: `**Only ${adminRole} can close this ticket.**`, ephemeral: true });
+      return;
+    }
+    
+    let noEmbed = new MessageEmbed()
+    .setDescription(`**Successfully stopped the closing progress**`)
+    .setColor('GREEN')
+    .setFooter({text: `This message will be deleted in 7 seconds`, iconURL: message.user.avatarURL()})
+
+    message.update({embeds: [noEmbed]})
+    setTimeout(async() => {
+      await message.deleteReply();
+    }, 7000);
+  } else if(message.customId === 'pin'){
+    const ticketChannel = message.channel;
+    const adminRole = message.guild.roles.cache.get(adminRoleID);
+    if (!message.member.roles.cache.some(e=> e.id === adminRole.id)){
+      message.reply({ content: `**Only ${adminRole} can pin this ticket.**`, ephemeral: true });
+      return;
+    }
+    let ticketCount = 0;
+    try {
+      const data = fs.readFileSync('ticketCount.json');
+      const jsonData = JSON.parse(data);
+      ticketCount = jsonData.ticketCount;
+    } catch (error) {
+      console.error(error);
+    }
+  
+    const ticketChannelName = `📌-ticket-${ticketCount}`;
+  
+    
+    let pinEmbed = new MessageEmbed()
+    .setDescription(`Successfully pinned the ticket!`)
+    .setColor('GREEN')
+    .setTimestamp()
+
+    message.reply({embeds: [pinEmbed], components: []})
+    setTimeout(async() => {
+      await ticketChannel.setName(ticketChannelName);
+    });
+  }
+  })
+
 
 
  client.login("yourbottoken");
