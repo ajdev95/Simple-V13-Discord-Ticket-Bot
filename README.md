@@ -1,6 +1,6 @@
 # Simple Ticket Bot [ One Bot **Guild** Only ]
 
-# Change log 1.0.2
+> # **Change log 1.0.2**
 
 The ability to get answered with a "Yes/No" when closing a ticket.
 Added a pin button that pins the ticket.
