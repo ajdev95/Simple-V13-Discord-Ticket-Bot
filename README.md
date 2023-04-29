@@ -1,14 +1,14 @@
 # Simple Ticket Bot [ One Bot **Guild** Only ]
 
-# 🆘 Help 🆘
-
-**Support:** [discord.gg/black-h](https://discord.gg/black-h)
-
-
 # Change log 1.0.2
 
 The ability to get answered with a "Yes/No" when closing a ticket.
 Added a pin button that pins the ticket.
+
+
+# 🆘 Help 🆘
+
+**Support:** [discord.gg/black-h](https://discord.gg/black-h)
 
 # Installation
 
