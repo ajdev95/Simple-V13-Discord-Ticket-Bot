@@ -6,10 +6,6 @@ Added a pin button that pins the ticket.
 
 # Simple Ticket Bot [ One Bot **Guild** Only ]
 
-# 🆘 Help 🆘
-
-**Support:** [discord.gg/black-h](https://discord.gg/black-h)
-
 # Installation
 
 <details>
